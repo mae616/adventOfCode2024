@@ -7,24 +7,12 @@ function main(input) {
 
     const levels = current.split(" ").map(Number);
 
-    const isAsc = () => {
-      let ascCount = 0;
-      let descCount = 0;
-      let prev = levels[0];
-      for (let i = 1; i < levels.length; i++) {
-        if (prev < levels[i]) {
-          ascCount++;
-        } else if (prev > levels[i]) {
-          descCount++;
-        }
-        prev = levels[i];
+    const isSafe = (ary) => {
+      let asc = true;
+      if (levels[0] > levels[levels.length - 1]) {
+        asc = false;
       }
-      return ascCount >= descCount; // 修正: 同数の場合も昇順とみなす
-    };
 
-    let asc = isAsc();
-
-    const isSafe = (ary, asc) => {
       let safe = true;
       let prev = ary[0];
       for (let i = 1; i < ary.length; i++) {
@@ -40,16 +28,11 @@ function main(input) {
       return safe;
     };
 
-    if (isSafe(levels, asc)) {
+    if (isSafe(levels)) {
       count++;
     } else {
       for (let i = 0; i < levels.length; i++) {
-        if (
-          isSafe(
-            levels.filter((_, index) => index !== i),
-            asc
-          )
-        ) {
+        if (isSafe(levels.filter((_, index) => index !== i))) {
           count++;
           break;
         }
