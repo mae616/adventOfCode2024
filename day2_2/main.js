@@ -9,7 +9,7 @@ function main(input) {
 
     const isSafe = (ary) => {
       let asc = true;
-      if (levels[0] > levels[levels.length - 1]) {
+      if (ary[0] > ary[ary.length - 1]) {
         asc = false;
       }
 
