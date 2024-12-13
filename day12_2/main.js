@@ -1,5 +1,3 @@
-const { count } = require("console");
-
 function main(input) {
   const args = input.split("\n");
 
@@ -52,7 +50,7 @@ function main(input) {
           search(nx, ny, m.label);
         }
       })(x, y);
-      let outer = countOuter(side);
+      const outer = countOuter(side);
       sum += area * outer;
     }
   }
